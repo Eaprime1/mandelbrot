@@ -18,14 +18,20 @@ build/
 *.swo
 *~
 
-# OS
+# OS / home directory bleed
 .DS_Store
 Thumbs.db
+.gnome/
+.local/
+.pki/
+.config/
+.cache/
+.dbus/
+.kde/
 
 # Temporary files
 *.tmp
 *.log
-.cache/
 
 # Sensitive
 *.key
@@ -33,6 +39,17 @@ Thumbs.db
 credentials.json
 tokens.json
 gcp-oauth.keys.json
+ghauth.txt
+*auth*.txt
+*token*.txt
+*secret*.txt
+agentk.txt
+*agentk*
+keys.env
+
+# Local environment (API keys live here, never commit)
+.bashrc
+.env.*
 
 # Node
 node_modules/

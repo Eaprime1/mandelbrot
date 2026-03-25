@@ -47,7 +47,9 @@ name: 'Terraform'
 on:
   push:
     branches: [ "main" ]
+    paths: [ "**.tf" ]
   pull_request:
+    paths: [ "**.tf" ]
 
 permissions:
   contents: read
