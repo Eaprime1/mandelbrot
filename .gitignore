@@ -34,6 +34,10 @@ credentials.json
 tokens.json
 gcp-oauth.keys.json
 
+# Local environment (API keys live here, never commit)
+.bashrc
+.env.*
+
 # Node
 node_modules/
 npm-debug.log
