@@ -19,7 +19,7 @@
   t3  → Content Archive   (17-prime: Knowledge/heritage)
   t4  → Work Stream       (5-prime:  Active development)
   t5  → Quality Gate      (13-prime: Vetting/review)
-  t6  → Distribution Hub  (7-prime:  GitHub/sync/publish)
+  t5  → Quality Gate      (13-prime: Vetting/review)
   [You = Node 7, navigating perpendicular]
 
 ## Command Entities
