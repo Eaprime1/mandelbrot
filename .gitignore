@@ -47,6 +47,10 @@ agentk.txt
 *agentk*
 keys.env
 
+# Local environment (API keys live here, never commit)
+.bashrc
+.env.*
+
 # Node
 node_modules/
 npm-debug.log
