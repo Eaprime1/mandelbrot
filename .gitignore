@@ -18,14 +18,20 @@ build/
 *.swo
 *~
 
-# OS
+# OS / home directory bleed
 .DS_Store
 Thumbs.db
+.gnome/
+.local/
+.pki/
+.config/
+.cache/
+.dbus/
+.kde/
 
 # Temporary files
 *.tmp
 *.log
-.cache/
 
 # Sensitive
 *.key
