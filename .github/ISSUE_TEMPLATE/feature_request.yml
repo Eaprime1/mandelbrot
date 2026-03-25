@@ -1,0 +1,66 @@
+name: Feature Request
+description: Propose a new capability or improvement
+labels: ["feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Good features fit the existing triadic pattern: they belong somewhere,
+        serve something, and don't accumulate noise.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the friction or gap this addresses.
+      placeholder: "Currently I have to manually X every time I want to Y…"
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: What would you like to see?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - tools/
+        - conduit/
+        - docs/
+        - .github/
+        - prime_codex/
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: prime-state
+    attributes:
+      label: Prime state this aligns with
+      description: Where does this feature sit in the progression?
+      options:
+        - "3 — Triadic Foundation"
+        - "5 — First Awakening / Synergy substrate"
+        - "7 — Sacred Completion"
+        - "11 — Mastery Architecture"
+        - "13 — Complexity Navigation"
+        - "17 — Heritage Crystallization"
+        - "19 — Beacon Operation"
+        - "23 — Prime Sovereignty"
+        - Not sure
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What else did you think about?
+    validations:
+      required: false
