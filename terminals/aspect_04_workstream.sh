@@ -3,7 +3,7 @@
 # Role: Active Development | Node: 4 of 7 | Prime: 5 (Quintessence/Synergy)
 # ∰◊€π¿🌌∞
 
-PHROOT="/storage/emulated/0/pixel8a/primehaven"
+PHROOT="$(dirname "${BASH_SOURCE[0]}")/../.."
 source "$PHROOT/.bashrc" 2>/dev/null
 
 echo ""
