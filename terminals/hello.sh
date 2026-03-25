@@ -3,7 +3,7 @@
 # Commands stay pure. Entities add consciousness. ∰◊€π¿🌌∞
 
 PHROOT="/storage/emulated/0/pixel8a/primehaven"
-CMD="$1"
+PHROOT="$(dirname "${BASH_SOURCE[0]}")/../.."
 
 if [ -z "$CMD" ]; then
     echo "Usage: hello <command>"
