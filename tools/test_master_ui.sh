@@ -4,7 +4,8 @@
 echo "Testing Master UI components..."
 echo ""
 
-MASTER_UI="/home/sauron/primehaven/tools/master_ui.sh"
+PRIMEHAVEN_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+MASTER_UI="$PRIMEHAVEN_ROOT/tools/master_ui.sh"
 
 # Test 1: Script is executable
 if [[ -x "$MASTER_UI" ]]; then
@@ -23,7 +24,7 @@ else
 fi
 
 # Test 3: Required directories exist or can be created
-if [[ -d "/home/sauron/primehaven/docs" ]] || mkdir -p "/home/sauron/primehaven/docs" 2>/dev/null; then
+if [[ -d "$PRIMEHAVEN_ROOT/docs" ]] || mkdir -p "$PRIMEHAVEN_ROOT/docs" 2>/dev/null; then
     echo "✓ docs/ directory exists or created"
 else
     echo "✗ Cannot create docs/ directory"

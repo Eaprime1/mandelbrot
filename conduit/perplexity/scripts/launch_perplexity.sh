@@ -4,7 +4,7 @@
 
 CONDUIT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PERPLEXITY_CLI="$CONDUIT_DIR/perplexityai"
-CONTEXT_DIR="/home/sauron/primehaven/.perplexity"
+CONTEXT_DIR="$HOME/.primehaven/.perplexity"
 WORKSPACE="$CONDUIT_DIR/workspace"
 
 # Colors
