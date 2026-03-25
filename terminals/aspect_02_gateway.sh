@@ -4,7 +4,7 @@ set -euo pipefail
 # Role: Entity Interface | Node: 2 of 7 | Prime: 3 (Triadic Stability)
 # ∰◊€π¿🌌∞
 
-PHROOT="/storage/emulated/0/pixel8a/primehaven"
+PHROOT="$(dirname "${BASH_SOURCE[0]}")/../.."
 source "$PHROOT/.bashrc" 2>/dev/null
 
 echo ""
