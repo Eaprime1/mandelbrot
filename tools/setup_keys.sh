@@ -101,7 +101,7 @@ if ! grep -q "PERPLEXITY_API_KEY" "$KEYS_FILE" 2>/dev/null; then
 fi
 
 # --- Wire auto-load into .bashrc ---
-LOAD_LINE='[ -f ~/.config/primehaven/keys.env ] && source ~/.config/primehaven/keys.env'
+LOAD_LINE='[[ -f ~/.config/primehaven/keys.env ]] && source ~/.config/primehaven/keys.env'
 if grep -qF "$LOAD_LINE" "$BASHRC" 2>/dev/null; then
     print_msg "$YELLOW" "⚠  Auto-load already in ~/.bashrc"
 else
