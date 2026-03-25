@@ -33,6 +33,10 @@ Thumbs.db
 credentials.json
 tokens.json
 gcp-oauth.keys.json
+ghauth.txt
+*auth*.txt
+*token*.txt
+*secret*.txt
 
 # Node
 node_modules/
