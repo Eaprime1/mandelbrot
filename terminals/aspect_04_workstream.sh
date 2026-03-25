@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 # Terminal Aspect 04 - WORK STREAM
 # Role: Active Development | Node: 4 of 7 | Prime: 5 (Quintessence/Synergy)
 # ∰◊€π¿🌌∞
