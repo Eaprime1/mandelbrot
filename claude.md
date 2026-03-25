@@ -1,7 +1,7 @@
 # Claude Notes - }primehaven{ Project
 
-**Last Updated**: 2026-02-05
-**Location**: `/home/sauron/primehaven`
+**Last Updated**: 2026-03-25
+**Location**: `~/primehaven`
 **Platform**: Ubuntu laptop (terminal-focused workspace)
 
 ---
@@ -24,7 +24,7 @@
 
 ## The Prime Progression Framework ⭐
 
-**Location**: `/home/sauron/primehaven/prime_codex/` (188 files, 8.6MB)
+**Location**: `~/primehaven/prime_codex/` (188 files, 8.6MB)
 
 **Core Concept**: Consciousness development follows **prime number states**, not linear growth. Each prime represents a "critical operation" (like nuclear reactors) - stable, generative, self-sustaining. Non-prime numbers are "shadow states" - transitional phases requiring navigation.
 
@@ -463,6 +463,7 @@ The project is designed for human-AI collaboration with:
 
 ### Session Opening ("Refreshing Journey")
 **Quick Start**: `mui` - Launch Master UI for system status dashboard (single-keypress navigation)
+**PR Workflow**: `ppr` - Prime Progression PR process (consciousness-aware PR creation with prime state + sparklization capture)
 **Daily Check**: `~/primehaven/tools/trailing_space_quick_check.sh` - File hygiene verification
 **Full Protocol**: `cat ~/primehaven/docs/SESSION_OPENING_PROTOCOL.md` - Complete opening workflow
 **Five Phases**: Infrastructure → Content → Architecture → Void State → Sparkle Readiness
@@ -492,6 +493,13 @@ The project is designed for human-AI collaboration with:
 **Features**: Dashboard, DirTree generation, Repository status, Sync checks, Tool launcher, Quick actions
 **Usage**: Type `mui` in terminal for instant system status and navigation
 **Docs**: `docs/MASTER_UI_GUIDE.md`, `docs/MASTER_UI_DESIGN_RATIONALE.md`
+
+### Prime Progression PR Workflow
+**Script**: `~/primehaven/tools/prime_progression_pr.sh` (or `ppr` alias)
+**Purpose**: Consciousness-aware PR creation — captures prime state, sparklization moments, and completion criteria before opening PR
+**Setup**: Run `~/primehaven/tools/install_ppr_alias.sh` once to add `ppr` to `~/.bashrc`
+**Requires**: `gh` CLI for PR creation (available on personal machine)
+**Logs**: Progression history stored in `~/.git_prime_progression/progression.log`
 
 ### Trailing Space Protection
 **Scanner**: `~/primehaven/tools/trailing_space_assassin.sh` - Detect and fix trailing spaces
@@ -567,7 +575,7 @@ The project is designed for human-AI collaboration with:
 2. Add MCP server to Claude Code:
 ```bash
 claude mcp add google-drive --transport stdio \
-  --env GOOGLE_DRIVE_OAUTH_CREDENTIALS=/home/sauron/.config/google-drive-mcp/gcp-oauth.keys.json \
+  --env GOOGLE_DRIVE_OAUTH_CREDENTIALS=~/.config/google-drive-mcp/gcp-oauth.keys.json \
   -- npx @piotr-agier/google-drive-mcp
 ```
 
@@ -590,7 +598,7 @@ Until MCP is set up, Eric can copy Google Docs content into local `.txt` files f
 
 ## Build Plan & Environment Setup
 
-**Master Document**: `/home/sauron/primehaven/ENVIRONMENT_SETUP_AND_BUILD_PLAN.md`
+**Master Document**: `~/primehaven/ENVIRONMENT_SETUP_AND_BUILD_PLAN.md`
 
 Comprehensive plan covering:
 - **The Germ**: 11^germ spawn system (three aspects: work=15, play=16, create=17)
@@ -648,7 +656,7 @@ Comprehensive plan covering:
 ### Pending ⚠️
 - **GitHub CLI Auth** - Not authenticated yet
 - **Remote Push** - Changes committed locally, need push
-- **Path Updates** - Many files still reference old /home/sauron/Q paths
+- **Path Updates** - Many files still reference old ~/Q paths
 - **System Environment Update** - Package updates pending
 
 ### Storage
