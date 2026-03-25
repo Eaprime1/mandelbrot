@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 # Terminal Aspect 05 - QUALITY GATE
 # Role: Vetting & Review | Node: 5 of 7 | Prime: 13 (Complexity Navigation)
 # ∰◊€π¿🌌∞
