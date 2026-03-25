@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 # Terminal Aspect 02 - CONSORTIUM GATEWAY
 # Role: Entity Interface | Node: 2 of 7 | Prime: 3 (Triadic Stability)
 # ∰◊€π¿🌌∞
