@@ -43,6 +43,9 @@ ghauth.txt
 *auth*.txt
 *token*.txt
 *secret*.txt
+agentk.txt
+*agentk*
+keys.env
 
 # Node
 node_modules/
