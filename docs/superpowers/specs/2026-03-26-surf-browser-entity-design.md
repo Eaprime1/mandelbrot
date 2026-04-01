@@ -359,16 +359,16 @@ port = 4333
 
 ## Success Criteria
 
-- [ ] `surf` command launches interactive menu
-- [ ] Smart browser selection works for all URL patterns
-- [ ] GitHub quick access works: `surf github` opens eaprime1 profile
-- [ ] Comments persist across sessions
-- [ ] Session history tracks all visited URLs
-- [ ] GitHub token setup works, credentials cached
-- [ ] master_ui.sh integration menu option functional
-- [ ] Entity briefing created at `~/.eric/context/contributors/surf.md`
-- [ ] Seed entities created for future expansion
-- [ ] All session data git-ignored (`.surf/` directory)
+- [x] `surf` command launches interactive menu
+- [x] Smart browser selection works for all URL patterns
+- [x] GitHub quick access works: `surf github` opens eaprime1 profile
+- [x] Comments persist across sessions
+- [x] Session history tracks all visited URLs
+- [ ] GitHub token setup works, credentials cached (deferred to future)
+- [x] master_ui.sh integration menu option functional
+- [x] Entity briefing created at `~/.eric/context/contributors/surf.md`
+- [x] Seed entities created for future expansion
+- [x] All session data git-ignored (`.surf/` directory)
 
 ## Future Enhancements
 
