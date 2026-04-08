@@ -1,0 +1,35 @@
+#!/bin/bash
+# Quick script to push the restructure branch
+# Run this from a terminal where GitHub authentication works
+
+cd ~/primehaven || exit 1
+
+echo "Current branch:"
+git branch --show-current
+
+echo ""
+echo "Recent commits:"
+git log --oneline -5
+
+echo ""
+echo "Remote:"
+git remote -v
+
+echo ""
+echo "Pushing restructure branch to origin..."
+
+# Try SSH first
+if git push -u origin restructure 2>/dev/null; then
+    echo "✓ Pushed via SSH successfully!"
+    exit 0
+fi
+
+echo "SSH push failed, trying HTTPS..."
+
+# If SSH fails, try HTTPS (will prompt for credentials if needed)
+git remote set-url origin https://github.com/Eaprime1/primehaven.git
+git push -u origin restructure
+
+echo "✓ Branch pushed!"
+echo ""
+echo "Next: Create PR at https://github.com/Eaprime1/primehaven/compare/main...restructure"
