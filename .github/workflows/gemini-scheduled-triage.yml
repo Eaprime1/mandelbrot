@@ -90,7 +90,7 @@ jobs:
           ISSUES="$(jq -cn \
             --argjson unlabeled "${UNLABELED_ISSUES}" \
             --argjson needs_triage "${NEEDS_TRIAGE_ISSUES}" \
-            '$unlabeled + $needs_triage | unique_by(.number) | sort_by(.number)')"
+            '($unlabeled // []) + ($needs_triage // []) | unique_by(.number) | sort_by(.number)')"
 
           echo '📝 Setting output for GitHub Actions...'
           echo "issues_to_triage=${ISSUES}" >> "${GITHUB_OUTPUT}"

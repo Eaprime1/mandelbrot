@@ -63,7 +63,7 @@ jobs:
         env:
           GITHUB_TOKEN: '' # Do NOT pass any auth tokens here since this runs on untrusted inputs
           ISSUE_TITLE: "${{ github.event.issue.title || github.event.pull_request.title || 'Untitled' }}"
-          ISSUE_BODY: '${{ github.event.issue.body || github.event.pull_request.body || github.event.pull_request_review.body || github.event.comment.body || '' }}'
+          ISSUE_BODY: '${{ github.event.issue.body || github.event.pull_request.body || '' }}'
           AVAILABLE_LABELS: '${{ steps.get_labels.outputs.available_labels }}'
         with:
           gcp_location: '${{ vars.GOOGLE_CLOUD_LOCATION }}'

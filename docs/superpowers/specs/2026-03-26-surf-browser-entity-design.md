@@ -225,6 +225,7 @@ surf gh issues           # Opens issues for current repo
 1. **Default setup (recommended)**: `gh auth login`
    - Uses GitHub CLI credential storage (keychain/secure store when available)
    - Surf reads auth state via `gh auth status` / `gh auth token`
+   - If `gh` is unavailable, surf should fail fast with install guidance and fallback to runtime token mode only
    - No PAT file written by default
 
 2. **Runtime token override (ephemeral)**:
