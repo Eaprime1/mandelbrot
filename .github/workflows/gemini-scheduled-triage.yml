@@ -87,8 +87,8 @@ jobs:
             --repo "${GITHUB_REPOSITORY}"
           )"
 
-          echo "${UNLABELED_ISSUES}" | jq -e 'type == "array"' >/dev/null
-          echo "${NEEDS_TRIAGE_ISSUES}" | jq -e 'type == "array"' >/dev/null
+          echo "${UNLABELED_ISSUES}" | jq -e 'type == "array"' >/dev/null || { echo '❌ UNLABELED_ISSUES is not a valid JSON array'; exit 1; }
+          echo "${NEEDS_TRIAGE_ISSUES}" | jq -e 'type == "array"' >/dev/null || { echo '❌ NEEDS_TRIAGE_ISSUES is not a valid JSON array'; exit 1; }
 
           ISSUES="$(jq -ecn \
             --argjson unlabeled "${UNLABELED_ISSUES}" \
