@@ -3,7 +3,7 @@ set -euo pipefail
 # Quick script to push the restructure branch
 # Run this from a terminal where GitHub authentication works
 
-cd ~/primehaven || exit 1
+cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
 
 echo "Current branch:"
 git branch --show-current
