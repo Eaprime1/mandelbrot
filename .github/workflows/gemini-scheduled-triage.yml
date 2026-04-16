@@ -87,7 +87,10 @@ jobs:
             --repo "${GITHUB_REPOSITORY}"
           )"
 
-          ISSUES="$(jq -cn \
+          echo "${UNLABELED_ISSUES}" | jq -e 'type == "array"' >/dev/null
+          echo "${NEEDS_TRIAGE_ISSUES}" | jq -e 'type == "array"' >/dev/null
+
+          ISSUES="$(jq -ecn \
             --argjson unlabeled "${UNLABELED_ISSUES}" \
             --argjson needs_triage "${NEEDS_TRIAGE_ISSUES}" \
             '($unlabeled // []) + ($needs_triage // []) | unique_by(.number) | sort_by(.number)')"

@@ -89,7 +89,7 @@ Assemble the results into a single JSON array, formatted as a string, according 
 
 - Use the multiline env-file format and append mode:
   - `printf '%s\n' 'TRIAGED_ISSUES<<EOF' >> "$GITHUB_ENV"`
-  - `printf '%s\n' '...' >> "$GITHUB_ENV"` (Replace `...` with the final, minified JSON array string).
+  - `printf '%s\n' '...' >> "$GITHUB_ENV"` (Replace `...` with the final, minified single-line JSON array string; no literal newlines).
   - `printf '%s\n' 'EOF' >> "$GITHUB_ENV"`
 
 ## Output Specification
