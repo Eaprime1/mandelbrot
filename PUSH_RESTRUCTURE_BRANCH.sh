@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 # Quick script to push the restructure branch
 # Run this from a terminal where GitHub authentication works
 
