@@ -1288,7 +1288,7 @@ Terminal-based web browser with intelligent browser selection (lynx/w3m/browsh),
 
 ```bash
 # Alias (add to ~/.bashrc)
-alias surf='/home/sauron/primehaven/terminals/surf/entity_wrapper.sh'
+alias surf='$HOME/primehaven/terminals/surf/entity_wrapper.sh'
 
 # Interactive mode
 surf
