@@ -605,9 +605,11 @@ import_session() {
         return 0
     fi
 
-    tar -xzf "$archive_path" -C "$HOME" 2>/dev/null
-
-    if [[ $? -eq 0 ]]; then
+    if tar -xzf "$archive_path" -C "$HOME" 2>/dev/null; then
+        echo "✓ Session imported successfully"
+    else
+        echo "✗ Import failed"
+    fi
         echo "✓ Session imported successfully"
     else
         echo "✗ Import failed"
