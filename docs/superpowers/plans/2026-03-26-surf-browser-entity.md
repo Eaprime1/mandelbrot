@@ -151,6 +151,7 @@ verify_browser() {
 # Returns: available browser, preferring w3m > lynx > browsh
 fallback_browser() {
     local preferred="$1"
+    local browser
 
     if verify_browser "$preferred"; then
         echo "$preferred"
