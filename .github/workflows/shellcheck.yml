@@ -22,7 +22,7 @@ jobs:
         with:
           # SC2034: unused variables — common in sourced scripts, suppress
           # SC1091: not following sourced file — files may not exist in CI
-          # Additional warnings currently present in legacy scripts:
+          # Temporary baseline for legacy scripts while they are incrementally refactored:
           # SC2128 array/string mismatch, SC2155 declare+assign masking status,
           # SC2178 variable type mismatch, SC2207 command substitution splitting,
           # SC2221/SC2222 overlapping or unreachable patterns.
