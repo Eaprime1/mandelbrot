@@ -146,7 +146,8 @@ fi
 *Example Test Script:*
 ```bash
 #!/bin/bash
-# test_my_entity.sh
+#!/bin/bash
+set -euo pipefail
 
 ./spirit.sh --help | grep "Usage"
 ./spirit.sh --session test | grep "Session started"
