@@ -116,7 +116,7 @@ docs: add spec for interactive zoom feature
 ```bash
 echo "4) Launch My Entity"
 # ...
-if [ "$choice" = "4" ]; then
+if [[ "$choice" == "4" ]]; then
   ./terminals/my_entity/spirit.sh
 fi
 ```
