@@ -805,7 +805,6 @@ browse_url() {
     echo ""
 
     # Launch browser
-    # Launch browser
     local exit_code=0
     case "$browser" in
         lynx) lynx -accept_all_cookies "$url" || exit_code=$? ;;
