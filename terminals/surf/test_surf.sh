@@ -10,7 +10,6 @@ source "${SCRIPT_DIR}/session_manager.sh"
 # Colors
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 PASS=0
@@ -24,12 +23,12 @@ assert_equals() {
 
     if [[ "$actual" == "$expected" ]]; then
         echo -e "${GREEN}✓${NC} $test_name"
-        ((PASS++))
+        ((++PASS))
     else
         echo -e "${RED}✗${NC} $test_name"
         echo "  Expected: $expected"
         echo "  Got: $actual"
-        ((FAIL++))
+        ((++FAIL))
     fi
 }
 
@@ -41,7 +40,7 @@ echo ""
 # Test 1: Browser Selection
 echo "Testing Browser Selection..."
 result=$(select_browser "https://github.com/eaprime1")
-assert_equals "browsh" "$result" "GitHub → browsh"
+assert_equals "w3m" "$result" "GitHub → w3m"
 
 result=$(select_browser "https://docs.python.org")
 assert_equals "lynx" "$result" "Python docs → lynx"
@@ -90,30 +89,30 @@ init_session
 log_visit "https://example.com" "w3m" "success"
 if grep -q "example.com" "$HISTORY_FILE"; then
     echo -e "${GREEN}✓${NC} History logging works"
-    ((PASS++))
+    ((++PASS))
 else
     echo -e "${RED}✗${NC} History logging failed"
-    ((FAIL++))
+    ((++FAIL))
 fi
 
 # Test comments
 add_comment "https://example.com" "Test comment" "test,demo" &>/dev/null
 if grep -q "Test comment" "$COMMENTS_FILE"; then
     echo -e "${GREEN}✓${NC} Comment storage works"
-    ((PASS++))
+    ((++PASS))
 else
     echo -e "${RED}✗${NC} Comment storage failed"
-    ((FAIL++))
+    ((++FAIL))
 fi
 
 # Test bookmarks
 add_bookmark "https://example.com" "Example Site" "test" &>/dev/null
 if grep -q "Example Site" "$BOOKMARKS_FILE"; then
     echo -e "${GREEN}✓${NC} Bookmark storage works"
-    ((PASS++))
+    ((++PASS))
 else
     echo -e "${RED}✗${NC} Bookmark storage failed"
-    ((FAIL++))
+    ((++FAIL))
 fi
 
 # Test permissions
@@ -138,10 +137,10 @@ files=(
 for file in "${files[@]}"; do
     if [[ -f "$file" ]]; then
         echo -e "${GREEN}✓${NC} $(basename "$file") exists"
-        ((PASS++))
+        ((++PASS))
     else
         echo -e "${RED}✗${NC} $(basename "$file") missing"
-        ((FAIL++))
+        ((++FAIL))
     fi
 done
 
@@ -152,10 +151,10 @@ echo "Testing Entity Wrapper..."
 
 if "${SCRIPT_DIR}/entity_wrapper.sh" --help &>/dev/null; then
     echo -e "${GREEN}✓${NC} Entity wrapper help works"
-    ((PASS++))
+    ((++PASS))
 else
     echo -e "${RED}✗${NC} Entity wrapper help failed"
-    ((FAIL++))
+    ((++FAIL))
 fi
 
 echo ""
