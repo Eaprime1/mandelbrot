@@ -20,16 +20,24 @@ jobs:
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@v2
         with:
-          # Ignore specific warning codes for legacy scripts
+          # Ignore specific warning codes for legacy scripts:
+          # SC2034: unused variables — common in sourced scripts
+          # SC1091: not following sourced file — files may not exist in CI
+          # SC2128: array/string mismatch
+          # SC2155: declare+assign masking status
+          # SC2178: variable type mismatch
+          # SC2207: command substitution splitting
+          # SC2221: overlapping patterns
+          # SC2222: unreachable patterns
           ignore_codes: |
-            SC2034, # unused variables — common in sourced scripts, suppress
-            SC1091, # not following sourced file — files may not exist in CI
-            SC2128, # array/string mismatch
-            SC2155, # declare+assign masking status
-            SC2178, # variable type mismatch
-            SC2207, # command substitution splitting
-            SC2221, # overlapping patterns
-            SC2222  # unreachable patterns
+            SC2034
+            SC1091
+            SC2128
+            SC2155
+            SC2178
+            SC2207
+            SC2221
+            SC2222
           scandir: "."
           severity: warning
 
