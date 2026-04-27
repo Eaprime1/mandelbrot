@@ -67,7 +67,7 @@ tools/master_ui.sh:~200       # Add "W) Web Navigator" menu option
 - [ ] **Step 1: Create surf directory structure**
 
 ```bash
-cd /home/sauron/primehaven
+cd "$HOME/primehaven"
 mkdir -p terminals/surf/config
 mkdir -p terminals/entities/surf-simple
 mkdir -p terminals/entities/surf-unified
@@ -151,6 +151,7 @@ verify_browser() {
 # Returns: available browser, preferring w3m > lynx > browsh
 fallback_browser() {
     local preferred="$1"
+    local browser
 
     if verify_browser "$preferred"; then
         echo "$preferred"
@@ -604,9 +605,7 @@ import_session() {
         return 0
     fi
 
-    tar -xzf "$archive_path" -C "$HOME" 2>/dev/null
-
-    if [[ $? -eq 0 ]]; then
+    if tar -xzf "$archive_path" -C "$HOME" 2>/dev/null; then
         echo "✓ Session imported successfully"
     else
         echo "✗ Import failed"
@@ -805,13 +804,12 @@ browse_url() {
     echo ""
 
     # Launch browser
+    local exit_code=0
     case "$browser" in
-        lynx) lynx -accept_all_cookies "$url" ;;
-        w3m) w3m "$url" ;;
-        browsh) browsh --startup-url "$url" ;;
+        lynx) lynx -accept_all_cookies "$url" || exit_code=$? ;;
+        w3m) w3m "$url" || exit_code=$? ;;
+        browsh) browsh --startup-url "$url" || exit_code=$? ;;
     esac
-
-    local exit_code=$?
 
     # Log visit
     if [[ $exit_code -eq 0 ]]; then
@@ -1285,7 +1283,7 @@ Terminal-based web browser with intelligent browser selection (lynx/w3m/browsh),
 
 ```bash
 # Alias (add to ~/.bashrc)
-alias surf='/home/sauron/primehaven/terminals/surf/entity_wrapper.sh'
+alias surf='$HOME/primehaven/terminals/surf/entity_wrapper.sh'
 
 # Interactive mode
 surf

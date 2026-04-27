@@ -1,6 +1,5 @@
 {
   "version": "2.0",
-  "description": "mandelbrot — AI-human collaborative environment, Prime Progression Framework",
   "technicalLevel": "technical",
   "preferredStyle": {
     "verbosity": "moderate",
@@ -8,10 +7,8 @@
     "explanations": true
   },
   "domains": [
-    "bash",
-    "shell"
+    "python"
   ],
   "suggestedBy": "ecc-tools-repo-analysis",
-  "patchedBy": "claude-review-2026-04-08",
   "createdAt": "2026-04-08T22:28:34.123Z"
 }

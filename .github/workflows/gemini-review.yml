@@ -23,7 +23,6 @@ jobs:
     permissions:
       contents: 'read'
       id-token: 'write'
-      issues: 'write'
       pull-requests: 'write'
     steps:
       - name: 'Mint identity token'
@@ -35,7 +34,6 @@ jobs:
           app-id: '${{ vars.APP_ID }}'
           private-key: '${{ secrets.APP_PRIVATE_KEY }}'
           permission-contents: 'read'
-          permission-issues: 'write'
           permission-pull-requests: 'write'
 
       - name: 'Checkout repository'
