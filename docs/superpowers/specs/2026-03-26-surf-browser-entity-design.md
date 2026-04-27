@@ -222,28 +222,24 @@ surf gh issues           # Opens issues for current repo
 
 **Token-Based Authentication** (no plain-text passwords):
 
-1. **Setup**: `surf setup-github`
-   - Prompts for GitHub Personal Access Token (PAT)
-   - Instructions: "Generate at github.com/settings/tokens"
-   - Stores in `~/.surf/github-token` with chmod 600
-   - Tests authentication
-   - Saves session cookies
+1. **Default setup (recommended)**: `gh auth login`
+   - Uses GitHub CLI credential storage (keychain/secure store when available)
+   - Surf reads auth state via `gh auth status` / `gh auth token`
+   - If `gh` is unavailable, surf should fail fast with install guidance that includes runtime token fallback instructions
+   - No PAT file written by default.
 
-2. **Storage**:
-   - Token file: `~/.surf/github-token` (git-ignored, chmod 600)
-   - Session cookies: `~/.surf/sessions/github-session`
-   - After first login, credentials cached in browser cookies
+2. **Runtime token override (ephemeral)**:
+   - Support `GITHUB_TOKEN`/`GH_TOKEN` at runtime for CI or temporary sessions
+   - Avoid persistent token storage when possible
 
-3. **Security**:
-   - No passwords stored anywhere
-   - Token requires GitHub PAT (can be scoped/revoked)
-   - File permissions prevent other users from reading
-   - git-ignore prevents accidental commit
+3. **Optional file storage (explicit opt-in only)**:
+   - If user chooses file storage, path is `~/.surf/github-token` (chmod 600, git-ignored)
+   - Document minimum scopes, regular rotation, and revocation steps
+   - Recommend optional encryption-at-rest where available
 
-4. **Token Expiration**:
-   - If auth fails, surf prompts: "GitHub auth expired. Run: surf setup-github"
-   - User generates new token, re-runs setup
-   - One-time operation
+4. **Token expiration/rotation**:
+   - If auth fails, surf prompts: "GitHub auth expired. Re-run `gh auth login` or refresh token."
+   - Rotation guidance: short-lived tokens preferred; revoke unused tokens promptly
 
 ## Integration Points
 

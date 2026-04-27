@@ -71,13 +71,29 @@ jobs:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN || github.token }}'
         run: |-
           echo '🔍 Finding unlabeled issues and issues marked for triage...'
-          ISSUES="$(gh issue list \
+          UNLABELED_ISSUES="$(gh issue list \
             --state 'open' \
-            --search 'no:label label:"status/needs-triage"' \
+            --search 'no:label' \
             --json number,title,body \
             --limit '100' \
             --repo "${GITHUB_REPOSITORY}"
           )"
+
+          NEEDS_TRIAGE_ISSUES="$(gh issue list \
+            --state 'open' \
+            --search 'label:"status/needs-triage"' \
+            --json number,title,body \
+            --limit '100' \
+            --repo "${GITHUB_REPOSITORY}"
+          )"
+
+          echo "${UNLABELED_ISSUES}" | jq -e 'type == "array"' >/dev/null || { echo '❌ UNLABELED_ISSUES is not a valid JSON array'; exit 1; }
+          echo "${NEEDS_TRIAGE_ISSUES}" | jq -e 'type == "array"' >/dev/null || { echo '❌ NEEDS_TRIAGE_ISSUES is not a valid JSON array'; exit 1; }
+
+          ISSUES="$(jq -ecn \
+            --argjson unlabeled "${UNLABELED_ISSUES}" \
+            --argjson needs_triage "${NEEDS_TRIAGE_ISSUES}" \
+            '($unlabeled // []) + ($needs_triage // []) | unique_by(.number) | sort_by(.number)')"
 
           echo '📝 Setting output for GitHub Actions...'
           echo "issues_to_triage=${ISSUES}" >> "${GITHUB_OUTPUT}"

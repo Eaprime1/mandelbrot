@@ -1,20 +1,11 @@
 ```markdown
 # MANDELBROT Development Patterns
 
-> Auto-generated skill from repository analysis (domain patched 2026-04-08)
+> Auto-generated skill from repository analysis
 
 ## Overview
 
-This skill teaches you how to contribute to the MANDELBROT ecosystem — a **bash/shell-first**
-AI-human collaborative environment built on the Prime Progression Framework.
-
-The repo centers on **terminal entity development**: modular, helix-structured bash entities
-that follow a strict lifecycle (design → spec → implement → test → PR → merge).
-The `surf` terminal browser entity is the canonical first example (Badge-001, 2026-03-31).
-
-Key patterns: documentation-driven development, entity wrapper architecture
-(Physical/Mental/Spirit helixes), chain of custody via git history,
-entrance pool queue discipline, and naming conventions (lowercase repos, `}name{` designation).
+This skill teaches you how to contribute to the MANDELBROT Python codebase, which focuses on terminal entity development and modular system integration. You'll learn the project's coding conventions, commit patterns, and step-by-step workflows for adding new features, planning, integrating entities, and testing. The repository emphasizes documentation-driven development, modular entity structure, and robust testing practices.
 
 ## Coding Conventions
 

@@ -270,6 +270,7 @@ Create `~/.eric/tools/bbs-login.sh`:
 
 ```bash
 #!/bin/bash
+set -euo pipefail
 # bbs-login.sh — Phoenix Primal Prism BBS login ritual
 # Wraps workspace.sh with the dial-up sequence.
 # On reattach (session already running): skips ritual, connects immediately.

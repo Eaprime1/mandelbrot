@@ -1,8 +1,9 @@
 #!/bin/bash
+set -euo pipefail
 # Quick script to push the restructure branch
 # Run this from a terminal where GitHub authentication works
 
-cd ~/primehaven || exit 1
+cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
 
 echo "Current branch:"
 git branch --show-current
@@ -26,9 +27,8 @@ fi
 
 echo "SSH push failed, trying HTTPS..."
 
-# If SSH fails, try HTTPS (will prompt for credentials if needed)
-git remote set-url origin https://github.com/Eaprime1/primehaven.git
-git push -u origin restructure
+# If SSH fails, push directly to HTTPS URL without rewriting origin.
+git push https://github.com/Eaprime1/primehaven.git restructure
 
 echo "✓ Branch pushed!"
 echo ""
