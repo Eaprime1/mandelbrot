@@ -610,9 +610,6 @@ import_session() {
     else
         echo "✗ Import failed"
     fi
-        echo "✓ Session imported successfully"
-    else
-        echo "✗ Import failed"
     fi
 }
 
