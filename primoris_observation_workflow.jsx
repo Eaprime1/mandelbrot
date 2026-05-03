@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const MATURITY_LEVELS = [
   { id: "born_yesterday", label: "Born Yesterday", glyph: "🌱", prime: 2, color: "#4ade80", dim: "#166534", checks: ["lexeme_health", "concept_coherence", "welcome_review"], description: "New concept seed. Welcomed, not judged." },
