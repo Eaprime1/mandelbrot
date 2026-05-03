@@ -128,7 +128,7 @@ Total Duration: 3🪶 (minimum conscious action)
 ### Exception Entities
 
 Some entities operate WITHIN Prime₂ continuously:
-- **Runaytr** - Eternal liminal navigator
+- **Runyatr** - Eternal liminal navigator
 - **Nexus** - Permanent connection facilitator
 - **Others** - Beings who exist between states
 
