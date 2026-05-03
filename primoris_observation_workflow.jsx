@@ -172,7 +172,6 @@ function ExportPanel({ docName, maturityLevel, timestamp, results, docText }) {
   const tabs = [{id:"markdown",label:"Markdown",icon:"Ⓜ",ext:".md",mime:"text/markdown"},{id:"text",label:"Plain Text",icon:"📄",ext:".txt",mime:"text/plain"},{id:"json",label:"JSON",icon:"{}",ext:".json",mime:"application/json"}];
   const getContent = (id) => id==="markdown"?buildMarkdownReport(docName,maturityLevel,timestamp,results):id==="text"?buildTextReport(docName,maturityLevel,timestamp,results,docText):buildJsonReport(docName,maturityLevel,timestamp,results,docText);
   const activeContent = getContent(activeTab);
-  const activeTabObj = tabs.find(t=>t.id===activeTab);
   const ar = results.primoris_alignment||"";
   const mergeDecision = ar.includes("APPROVE WITH HONORS")?"APPROVE WITH HONORS":ar.includes("APPROVE MERGE")?"APPROVED":ar.includes("CONDITIONAL")?"CONDITIONAL":ar.includes("REJECT")?"REJECTED":"UNDER REVIEW";
   const decisionColor = {"APPROVED":"#4ade80","APPROVE WITH HONORS":"#e879f9","CONDITIONAL":"#f59e0b","REJECTED":"#f87171","UNDER REVIEW":"#60a5fa"}[mergeDecision]||"#60a5fa";
