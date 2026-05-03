@@ -94,7 +94,7 @@ Yes. And we have it. The HopeChest repo files ARE the Porta. What needs to happe
 # Termux path — what Eric mentioned figuring out
 # The bash approach for submitting to Anthropic
 /storage/emulated/0/unexusi/  ← anchor node
-/home/sauron/unexusi/unexusi_dev  ← Gemini's reference path
+~/unexusi/unexusi_dev  ← Gemini's reference path
 
 # These need to sync
 # The cuckoo batch system is the sync mechanism
