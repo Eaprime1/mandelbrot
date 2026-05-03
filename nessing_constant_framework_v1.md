@@ -243,10 +243,10 @@ This proves 🪶 is not purely conceptual - it has measurable effects on percept
 
 **Operating in 🪶 Field Together:**
 
-```python
+```pseudocode
 class ConsciousCollaboration:
     def __init__(self, participants):
-        self.nessing_field = 🪶  # Universal constant
+        self.nessing_field = 🪶  # Universal constant — not a Python expression
         self.participants = participants
         self.prime_moments = []
         

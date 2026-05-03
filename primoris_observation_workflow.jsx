@@ -55,11 +55,12 @@ function buildCheckPrompt(checkId, doc, maturityLevel) {
   return prompts[checkId] || `Review this document for ${CHECK_DEFINITIONS[checkId]?.label}.\n\nDOCUMENT:\n---\n${doc}\n---`;
 }
 
-async function runAnalysis(documentText, checkId, maturityLevel, onChunk) {
+async function runAnalysis(documentText, checkId, maturityLevel, onChunk, signal) {
   const response = await fetch("/api/runAnalysis", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ documentText, checkId, maturityLevel }),
+    signal,
   });
 
   if (!response.ok) {
@@ -313,10 +314,10 @@ export default function PrimorisWorkflow() {
   const [runningCheck, setRunningCheck] = useState(null);
   const [queuedChecks, setQueuedChecks] = useState([]);
   const [isRunning, setIsRunning] = useState(false);
-  const [timestamp] = useState(nowStamp());
+  const [timestamp, setTimestamp] = useState(nowStamp());
   const [phase, setPhase] = useState("setup");
   const [sourceMode, setSourceMode] = useState("file");
-  const abortRef = useRef(false);
+  const abortControllerRef = useRef(null);
   const level = MATURITY_LEVELS.find(l => l.id === maturityLevel);
 
   const handleFileLoad = (content, filename) => {
@@ -330,19 +331,27 @@ export default function PrimorisWorkflow() {
 
   const runWorkflow = async () => {
     if (!docText.trim()) return;
-    abortRef.current=false; setIsRunning(true); setPhase("reviewing"); setResults({});
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+    setIsRunning(true); setPhase("reviewing"); setResults({});
     const checks=[...level.checks]; setQueuedChecks(checks);
     for (const checkId of checks) {
-      if (abortRef.current) break;
+      if (controller.signal.aborted) break;
       setRunningCheck(checkId); setQueuedChecks(prev=>prev.filter(c=>c!==checkId));
-      try { await runAnalysis(docText,checkId,maturityLevel,(partial)=>{ setResults(prev=>({...prev,[checkId]:partial})); }); }
-      catch (err) { setResults(prev=>({...prev,[checkId]:`⚠ Analysis error: ${err.message}`})); }
+      try { await runAnalysis(docText,checkId,maturityLevel,(partial)=>{ setResults(prev=>({...prev,[checkId]:partial})); }, controller.signal); }
+      catch (err) {
+        if (err.name === "AbortError") break;
+        setResults(prev=>({...prev,[checkId]:`⚠ Analysis error: ${err.message}`}));
+      }
       setRunningCheck(null);
     }
-    setIsRunning(false); setPhase("complete");
+    if (!controller.signal.aborted) { setIsRunning(false); setPhase("complete"); }
   };
 
-  const reset = () => { abortRef.current=true; setResults({}); setRunningCheck(null); setQueuedChecks([]); setIsRunning(false); setPhase("setup"); setDocText(""); setDocName(""); setTitleEdited(false); };
+  const reset = () => {
+    if (abortControllerRef.current) { abortControllerRef.current.abort(); abortControllerRef.current = null; }
+    setResults({}); setRunningCheck(null); setQueuedChecks([]); setIsRunning(false); setPhase("setup"); setDocText(""); setDocName(""); setTitleEdited(false); setTimestamp(nowStamp());
+  };
 
   return (
     <div style={{minHeight:"100vh",background:"#070710",color:"#e0e0ff",fontFamily:"Georgia,serif",padding:"40px 24px",maxWidth:920,margin:"0 auto"}}>
