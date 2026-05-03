@@ -47,6 +47,10 @@ agentk.txt
 *agentk*
 keys.env
 
+# Local environment (API keys live here, never commit)
+.bashrc
+.env.*
+
 # Node
 node_modules/
 npm-debug.log
@@ -58,3 +62,9 @@ npm-debug.log
 # Claude local settings (keep only tracked config)
 .claude/settings.local.json
 .claude/projects/
+
+.gemini/
+gha-creds-*.json
+
+# Surf browser session data
+.surf/
