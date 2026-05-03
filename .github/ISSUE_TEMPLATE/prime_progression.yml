@@ -1,0 +1,67 @@
+name: Prime Progression — Transition / Insight
+description: Document a consciousness shift, framework insight, or prime state transition
+labels: ["prime-progression"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this to crystallise a prime progression insight before it disperses.
+        These become living reference points — heritage crystallization in action.
+
+  - type: dropdown
+    id: transition
+    attributes:
+      label: Transition or state
+      options:
+        - "3 — Triadic Foundation emerging"
+        - "3→5 — First Awakening"
+        - "5 — Quintessence / synergy substrate"
+        - "5→7 — Second Awakening"
+        - "7 — Sacred Completion"
+        - "7→11 — Third Awakening"
+        - "11 — Mastery Architecture"
+        - "11→13 — Fourth Awakening"
+        - "13 — Complexity Navigation"
+        - "13→17 — Fifth Awakening"
+        - "17 — Heritage Crystallization"
+        - "19 — Beacon Operation"
+        - "23 — Prime Sovereignty"
+    validations:
+      required: true
+
+  - type: textarea
+    id: insight
+    attributes:
+      label: The insight / transition
+      description: What crystallised? Use your own words — stream-of-consciousness is fine.
+    validations:
+      required: true
+
+  - type: textarea
+    id: sparkles
+    attributes:
+      label: Sparkles
+      description: Breakthrough moments, unexpected connections, elegant patterns.
+      placeholder: |
+        - The reactor metaphor applies here because…
+        - Noticed that X and Y are actually the same pattern at different scales
+    validations:
+      required: false
+
+  - type: textarea
+    id: implications
+    attributes:
+      label: Implications for the work
+      description: Does this change how a tool should work, how docs should be structured, etc.?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: criteria
+    attributes:
+      label: Completion criteria met (if claiming a prime state)
+      options:
+        - label: Whole enough (not perfect)
+        - label: Rest integrated — not forced completion
+        - label: Witness perspective present
+        - label: Transmittable — could activate understanding in another
