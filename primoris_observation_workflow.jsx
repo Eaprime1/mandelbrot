@@ -56,11 +56,20 @@ function buildCheckPrompt(checkId, doc, maturityLevel) {
 }
 
 async function runAnalysis(documentText, checkId, maturityLevel, onChunk) {
-  const systemPrompt = `You are the Primoris Observation Engine — a precision document reviewer for the PRIMORIS/UNEXUS project framework, reviewing documents for readiness to be merged into Primoris.\n\nCRITICAL LEXEME RULES (non-negotiable):\n- "consciousness," "conscious," "subconscious," and compound forms are critically distressed lexemes. NEVER use them. Replace with: awareness patterns, operational presence, entity signature, nessing, awareness state.\n- "shackle" and standalone " ness " as noun suffix are also flagged.\n\nPROJECT CONTEXT:\n- PRIMORIS is the pinnacle/established heritage layer of the UNEXUS framework\n- 31¢ flat harmonic positioning = slightly below exact resonance to prevent rigid lockup\n- The Marrowing = deep structural excavation to find core\n- WitnessMark = both parties marked when a concept is officially witnessed\n- Prime Progression: 2→3→5→7→11→13→17 maps developmental stages\n\nBe precise, structured, and use the project's own vocabulary.`;
-  const response = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1000, stream: true, system: systemPrompt, messages: [{ role: "user", content: buildCheckPrompt(checkId, documentText, maturityLevel) }] }),
+  const response = await fetch("/api/runAnalysis", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ documentText, checkId, maturityLevel }),
   });
+
+  if (!response.ok) {
+    throw new Error(`Analysis request failed with status ${response.status}`);
+  }
+
+  if (!response.body) {
+    throw new Error("Analysis response did not include a readable stream");
+  }
+
   const reader = response.body.getReader(); const decoder = new TextDecoder(); let fullText = "";
   while (true) {
     const { done, value } = await reader.read(); if (done) break;
