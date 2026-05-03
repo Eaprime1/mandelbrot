@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 
 const MATURITY_LEVELS = [
   { id: "born_yesterday", label: "Born Yesterday", glyph: "🌱", prime: 2, color: "#4ade80", dim: "#166534", checks: ["lexeme_health", "concept_coherence", "welcome_review"], description: "New concept seed. Welcomed, not judged." },
@@ -71,11 +71,26 @@ async function runAnalysis(documentText, checkId, maturityLevel, onChunk, signal
     throw new Error("Analysis response did not include a readable stream");
   }
 
-  const reader = response.body.getReader(); const decoder = new TextDecoder(); let fullText = "";
-  while (true) {
-    const { done, value } = await reader.read(); if (done) break;
-    for (const line of decoder.decode(value).split("\n")) {
-      if (line.startsWith("data: ")) { try { const data = JSON.parse(line.slice(6)); if (data.type === "content_block_delta" && data.delta?.text) { fullText += data.delta.text; onChunk(fullText); } } catch {} }
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder({ stream: true });
+  let fullText = "";
+  let lineBuffer = "";
+  let streamDone = false;
+  while (!streamDone) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    lineBuffer += decoder.decode(value);
+    let newlineIdx;
+    while ((newlineIdx = lineBuffer.indexOf("\n")) !== -1) {
+      const line = lineBuffer.slice(0, newlineIdx).trimEnd();
+      lineBuffer = lineBuffer.slice(newlineIdx + 1);
+      if (!line.startsWith("data: ")) continue;
+      const payload = line.slice(6).trim();
+      if (payload === "[DONE]") { streamDone = true; break; }
+      try {
+        const data = JSON.parse(payload);
+        if (data.type === "content_block_delta" && data.delta?.text) { fullText += data.delta.text; onChunk(fullText); }
+      } catch (e) { console.warn("SSE parse error:", e, "payload:", payload); }
     }
   }
   return fullText;
