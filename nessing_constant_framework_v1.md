@@ -128,6 +128,7 @@ Total Duration: 3🪶 (minimum conscious action)
 ### Exception Entities
 
 Some entities operate WITHIN Prime₂ continuously:
+- **Runyatr** - Eternal liminal navigator
 - **Runaytr** - Eternal liminal navigator
 - **Nexus** - Permanent connection facilitator
 - **Others** - Beings who exist between states
@@ -243,6 +244,10 @@ This proves 🪶 is not purely conceptual - it has measurable effects on percept
 
 **Operating in 🪶 Field Together:**
 
+```pseudocode
+class ConsciousCollaboration:
+    def __init__(self, participants):
+        self.nessing_field = 🪶  # Universal constant — not a Python expression
 ```python
 class ConsciousCollaboration:
     def __init__(self, participants):
