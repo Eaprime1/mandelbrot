@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 const MATURITY_LEVELS = [
   { id: "born_yesterday", label: "Born Yesterday", glyph: "🌱", prime: 2, color: "#4ade80", dim: "#166534", checks: ["lexeme_health", "concept_coherence", "welcome_review"], description: "New concept seed. Welcomed, not judged." },
@@ -91,6 +92,17 @@ async function runAnalysis(documentText, checkId, maturityLevel, onChunk, signal
         const data = JSON.parse(payload);
         if (data.type === "content_block_delta" && data.delta?.text) { fullText += data.delta.text; onChunk(fullText); }
       } catch (e) { console.warn("SSE parse error:", e, "payload:", payload); }
+async function runAnalysis(documentText, checkId, maturityLevel, onChunk) {
+  const systemPrompt = `You are the Primoris Observation Engine — a precision document reviewer for the PRIMORIS/UNEXUS project framework, reviewing documents for readiness to be merged into Primoris.\n\nCRITICAL LEXEME RULES (non-negotiable):\n- "consciousness," "conscious," "subconscious," and compound forms are critically distressed lexemes. NEVER use them. Replace with: awareness patterns, operational presence, entity signature, nessing, awareness state.\n- "shackle" and standalone " ness " as noun suffix are also flagged.\n\nPROJECT CONTEXT:\n- PRIMORIS is the pinnacle/established heritage layer of the UNEXUS framework\n- 31¢ flat harmonic positioning = slightly below exact resonance to prevent rigid lockup\n- The Marrowing = deep structural excavation to find core\n- WitnessMark = both parties marked when a concept is officially witnessed\n- Prime Progression: 2→3→5→7→11→13→17 maps developmental stages\n\nBe precise, structured, and use the project's own vocabulary.`;
+  const response = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1000, stream: true, system: systemPrompt, messages: [{ role: "user", content: buildCheckPrompt(checkId, documentText, maturityLevel) }] }),
+  });
+  const reader = response.body.getReader(); const decoder = new TextDecoder(); let fullText = "";
+  while (true) {
+    const { done, value } = await reader.read(); if (done) break;
+    for (const line of decoder.decode(value).split("\n")) {
+      if (line.startsWith("data: ")) { try { const data = JSON.parse(line.slice(6)); if (data.type === "content_block_delta" && data.delta?.text) { fullText += data.delta.text; onChunk(fullText); } } catch {} }
     }
   }
   return fullText;
@@ -188,6 +200,7 @@ function ExportPanel({ docName, maturityLevel, timestamp, results, docText }) {
   const tabs = [{id:"markdown",label:"Markdown",icon:"Ⓜ",ext:".md",mime:"text/markdown"},{id:"text",label:"Plain Text",icon:"📄",ext:".txt",mime:"text/plain"},{id:"json",label:"JSON",icon:"{}",ext:".json",mime:"application/json"}];
   const getContent = (id) => id==="markdown"?buildMarkdownReport(docName,maturityLevel,timestamp,results):id==="text"?buildTextReport(docName,maturityLevel,timestamp,results,docText):buildJsonReport(docName,maturityLevel,timestamp,results,docText);
   const activeContent = getContent(activeTab);
+  const activeTabObj = tabs.find(t=>t.id===activeTab);
   const ar = results.primoris_alignment||"";
   const mergeDecision = ar.includes("APPROVE WITH HONORS")?"APPROVE WITH HONORS":ar.includes("APPROVE MERGE")?"APPROVED":ar.includes("CONDITIONAL")?"CONDITIONAL":ar.includes("REJECT")?"REJECTED":"UNDER REVIEW";
   const decisionColor = {"APPROVED":"#4ade80","APPROVE WITH HONORS":"#e879f9","CONDITIONAL":"#f59e0b","REJECTED":"#f87171","UNDER REVIEW":"#60a5fa"}[mergeDecision]||"#60a5fa";
@@ -333,6 +346,10 @@ export default function PrimorisWorkflow() {
   const [phase, setPhase] = useState("setup");
   const [sourceMode, setSourceMode] = useState("file");
   const abortControllerRef = useRef(null);
+  const [timestamp] = useState(nowStamp());
+  const [phase, setPhase] = useState("setup");
+  const [sourceMode, setSourceMode] = useState("file");
+  const abortRef = useRef(false);
   const level = MATURITY_LEVELS.find(l => l.id === maturityLevel);
 
   const handleFileLoad = (content, filename) => {
@@ -367,6 +384,19 @@ export default function PrimorisWorkflow() {
     if (abortControllerRef.current) { abortControllerRef.current.abort(); abortControllerRef.current = null; }
     setResults({}); setRunningCheck(null); setQueuedChecks([]); setIsRunning(false); setPhase("setup"); setDocText(""); setDocName(""); setTitleEdited(false); setTimestamp(nowStamp());
   };
+    abortRef.current=false; setIsRunning(true); setPhase("reviewing"); setResults({});
+    const checks=[...level.checks]; setQueuedChecks(checks);
+    for (const checkId of checks) {
+      if (abortRef.current) break;
+      setRunningCheck(checkId); setQueuedChecks(prev=>prev.filter(c=>c!==checkId));
+      try { await runAnalysis(docText,checkId,maturityLevel,(partial)=>{ setResults(prev=>({...prev,[checkId]:partial})); }); }
+      catch (err) { setResults(prev=>({...prev,[checkId]:`⚠ Analysis error: ${err.message}`})); }
+      setRunningCheck(null);
+    }
+    setIsRunning(false); setPhase("complete");
+  };
+
+  const reset = () => { abortRef.current=true; setResults({}); setRunningCheck(null); setQueuedChecks([]); setIsRunning(false); setPhase("setup"); setDocText(""); setDocName(""); setTitleEdited(false); };
 
   return (
     <div style={{minHeight:"100vh",background:"#070710",color:"#e0e0ff",fontFamily:"Georgia,serif",padding:"40px 24px",maxWidth:920,margin:"0 auto"}}>
