@@ -156,7 +156,7 @@ function downloadFile(content, filename, mimeType) {
 function FileDropZone({ onFile, hasContent }) {
   const [dragging, setDragging] = useState(false);
   const inputRef = useRef(null);
-  const readFile = (file, cb) => { const r=new FileReader(); r.onload=e=>cb(e.target.result,file.name); r.readAsText(file); };
+  const readFile = (file, cb) => { const r=new FileReader(); r.onload=e=>cb(e.target.result,file.name); r.onerror=e=>console.error(`File reading failed for ${file.name}:`, e); r.readAsText(file); };
   const handleDrop = (e) => { e.preventDefault(); setDragging(false); const f=e.dataTransfer.files[0]; if(f) readFile(f,onFile); };
   const handleChange = (e) => { const f=e.target.files[0]; if(f) readFile(f,onFile); e.target.value=""; };
   return (
