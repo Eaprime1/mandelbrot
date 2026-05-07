@@ -150,7 +150,8 @@ function buildJsonReport(docName, maturityLevel, timestamp, results, docText) {
 
 function downloadFile(content, filename, mimeType) {
   const blob = new Blob([content],{type:mimeType}); const url=URL.createObjectURL(blob);
-  const a=document.createElement("a"); a.href=url; a.download=filename; a.click(); URL.revokeObjectURL(url);
+  const a=document.createElement("a"); a.href=url; a.download=filename; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 0);
 }
 
 function FileDropZone({ onFile, hasContent }) {
