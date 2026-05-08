@@ -53,6 +53,7 @@ the full cycle get a record. The surf entity would be `badge-001`.
 - `.mandelbrot/`: character entity foundation created ✓
 - `docs/NAMING_CONVENTION.md`: lowercase + }name{ convention documented ✓
 - `.complexity/SEED.md`: complexity concept seeded ✓
+- `primoris_observation_workflow.jsx`: buffered SSE line parsing to prevent JSON.parse errors on split chunks ✓
 
 ---
 
