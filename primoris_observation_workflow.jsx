@@ -74,6 +74,10 @@ async function runAnalysis(documentText, checkId, maturityLevel, onChunk) {
   if (!response.body) {
     throw new Error("Analysis response did not include a readable stream");
   }
+  const reader = response.body.getReader(); const decoder = new TextDecoder(); let fullText = "";
+  while (true) {
+    const { done, value } = await reader.read(); if (done) break;
+    for (const line of decoder.decode(value).split("\n")) {
   const reader = response.body.getReader(); const decoder = new TextDecoder(); let fullText = ""; let buffer = "";
   while (true) {
     const { done, value } = await reader.read(); if (done) break;
