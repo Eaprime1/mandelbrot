@@ -61,10 +61,6 @@ async function runAnalysis(documentText, checkId, maturityLevel, onChunk) {
     method: "POST", headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1000, stream: true, system: systemPrompt, messages: [{ role: "user", content: buildCheckPrompt(checkId, documentText, maturityLevel) }] }),
   });
-  const reader = response.body.getReader(); const decoder = new TextDecoder(); let fullText = "";
-  while (true) {
-    const { done, value } = await reader.read(); if (done) break;
-    for (const line of decoder.decode(value).split("\n")) {
   const reader = response.body.getReader(); const decoder = new TextDecoder(); let fullText = ""; let buffer = "";
   while (true) {
     const { done, value } = await reader.read(); if (done) break;
