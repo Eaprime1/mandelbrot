@@ -81,7 +81,7 @@ function buildTextReport(docName, maturityLevel, timestamp, results, docText) {
     `  Document    : ${docName||"Untitled"}`, `  BirthMark   : ${birthmark}`,
     `  Timestamp   : ${timestamp}`, `  Date        : ${nowReadable()}`,
     `  Maturity    : ${level?.glyph} ${level?.label} (Prime ${level?.prime})`,
-    `  Observer    : Navigo Nexusuxen 🕵️🪶`, `  Author      : Navigo Suxenexus 🎹`,
+    `  Observer    : Navigo Nexusuxen 🕵️ 🪶`, `  Author      : Navigo Suxenexus 🎹`,
     `  Chain       : WITNESSED ⟡`, sep, ""];
   for (const checkId of level?.checks||[]) {
     const def = CHECK_DEFINITIONS[checkId];
