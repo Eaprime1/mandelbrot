@@ -29,7 +29,14 @@ fi
 
 echo ""
 echo "Step 1: Downloading NodeSource setup script..."
-curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+NODESOURCE_TMP="$(mktemp)"
+if ! curl -fsSL https://deb.nodesource.com/setup_22.x -o "$NODESOURCE_TMP"; then
+    echo "Download of the NodeSource setup script failed."
+    rm -f "$NODESOURCE_TMP"
+    exit 1
+fi
+sudo -E bash "$NODESOURCE_TMP"
+rm -f "$NODESOURCE_TMP"
 
 echo ""
 echo "Step 2: Installing Node.js v22..."

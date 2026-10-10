@@ -5,7 +5,13 @@ Handles: docx, txt, md
 
 import os
 import zipfile
-import xml.etree.ElementTree as ET
+try:
+    # DOCX files can come from anywhere; defusedxml blocks entity-expansion attacks.
+    from defusedxml import ElementTree as ET
+    _XML_HARDENED = True
+except ImportError:  # pragma: no cover - fallback keeps the script dependency-free
+    import xml.etree.ElementTree as ET
+    _XML_HARDENED = False
 from pathlib import Path
 from typing import Dict, List, Optional
 from dataclasses import dataclass
@@ -63,6 +69,8 @@ class DocumentParser:
             with zipfile.ZipFile(file_path, 'r') as docx:
                 # Extract document.xml
                 xml_content = docx.read('word/document.xml')
+                if not _XML_HARDENED and (b'<!DOCTYPE' in xml_content or b'<!ENTITY' in xml_content):
+                    raise ValueError("DOCX contains a DTD/entity declaration; install defusedxml to parse it")
                 tree = ET.fromstring(xml_content)
 
                 # Namespace for DOCX
