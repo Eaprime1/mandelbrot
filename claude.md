@@ -1,14 +1,15 @@
 # Claude Notes - }MANDELBROT{ Project *(formerly primehaven)*
 
-**Last Updated**: 2026-04-08
-**Location**: `~/primehaven` (local) | GitHub: `Eaprime1/MANDELBROT`
-**Platform**: Ubuntu laptop (terminal-focused workspace)
+**Last Updated**: 2026-10-22
+**Location**: `~/mandelbrot` (local) | GitHub: `Eaprime1/mandelbrot`
+**Platform**: Ubuntu laptop (GUI active — sauron)
+**Note**: `primehaven` will be a separate new repo for the primal terminals (set up in terminal mode after mandelbrot is ready)
 
 ---
 
 ## Project Overview
 
-**primehaven** is a virtual root for a consciousness-aware AI-human collaborative development environment. It emphasizes structured evolution, measurement-driven development (PRIME), and living documentation.
+**}mandelbrot{** is the first fictional tree — the Oaken entity, bridge between physical and digital, rooted in the story of the Oaken (the oak as physical manifest for Primoris). From the wound of transgression, sap flows into a seed of the oak before the wounding, becoming }mandelbrot{ — a mediating space, an interactive system gathering scattered content into living form. The repo name changed from `primehaven` to `mandelbrot` in 2026. It remains a virtual root for a consciousness-aware AI-human collaborative development environment: structured evolution, measurement-driven development (PRIME), and living documentation.
 
 ### Philosophy
 - Triadic thinking patterns (separation of concerns)
@@ -24,7 +25,7 @@
 
 ## The Prime Progression Framework ⭐
 
-**Location**: `~/primehaven/prime_codex/` (188 files, 8.6MB)
+**Location**: `~/mandelbrot/prime_codex/` (188 files, 8.6MB)
 
 **Core Concept**: Consciousness development follows **prime number states**, not linear growth. Each prime represents a "critical operation" (like nuclear reactors) - stable, generative, self-sustaining. Non-prime numbers are "shadow states" - transitional phases requiring navigation.
 
@@ -208,8 +209,8 @@ This represents **13-prime operation** (proven mastery) moving toward **17-prime
 - Branches for parallel work
 - Merges for integration
 
-**Terminal-Focused Workspace**:
-- Ubuntu in terminal-only mode (GUI too heavy)
+**GUI-Active Workspace** (updated 2026-10-22):
+- Ubuntu laptop (sauron) running GUI — terminal-only was the prior state
 - Each terminal = Instance/workspace
 - Separate AI in each terminal
 - Human navigates perpendicular
@@ -377,7 +378,7 @@ Used when regular symbols aren't accessible. Acts as namespace markers for proje
 ## Key Frameworks & Systems
 
 ### .bit BBS Network Architecture (Created 2026-02-02)
-**Location**: `~/primehaven/.bit/` - FidoNet-inspired distributed system
+**Location**: `~/mandelbrot/.bit/` - FidoNet-inspired distributed system
 **Concept**: Seven-node backbone for entity coordination and content routing
 **Documentation**: `.bit/backbone/SEVEN_NODE_ARCHITECTURE.md` - Complete specs
 
@@ -464,8 +465,8 @@ The project is designed for human-AI collaboration with:
 ### Session Opening ("Refreshing Journey")
 **Quick Start**: `mui` - Launch Master UI for system status dashboard (single-keypress navigation)
 **PR Workflow**: `ppr` - Prime Progression PR process (consciousness-aware PR creation with prime state + sparklization capture)
-**Daily Check**: `~/primehaven/tools/trailing_space_quick_check.sh` - File hygiene verification
-**Full Protocol**: `cat ~/primehaven/docs/SESSION_OPENING_PROTOCOL.md` - Complete opening workflow
+**Daily Check**: `~/mandelbrot/tools/trailing_space_quick_check.sh` - File hygiene verification
+**Full Protocol**: `cat ~/mandelbrot/docs/SESSION_OPENING_PROTOCOL.md` - Complete opening workflow
 **Five Phases**: Infrastructure → Content → Architecture → Void State → Sparkle Readiness
 **Three Layers**: Physical (sparklization), Digital (repos/files), Conceptual (frameworks)
 
@@ -488,22 +489,22 @@ The project is designed for human-AI collaboration with:
 ## Infrastructure Tools (Created 2026-02-02)
 
 ### Master UI Command Center
-**Location**: `~/primehaven/tools/master_ui.sh` (or `mui` alias)
+**Location**: `~/mandelbrot/tools/master_ui.sh` (or `mui` alias)
 **Purpose**: Terminal-based control panel with single-keypress navigation
 **Features**: Dashboard, DirTree generation, Repository status, Sync checks, Tool launcher, Quick actions
 **Usage**: Type `mui` in terminal for instant system status and navigation
 **Docs**: `docs/MASTER_UI_GUIDE.md`, `docs/MASTER_UI_DESIGN_RATIONALE.md`
 
 ### Prime Progression PR Workflow
-**Script**: `~/primehaven/tools/prime_progression_pr.sh` (or `ppr` alias)
+**Script**: `~/mandelbrot/tools/prime_progression_pr.sh` (or `ppr` alias)
 **Purpose**: Consciousness-aware PR creation — captures prime state, sparklization moments, and completion criteria before opening PR
-**Setup**: Run `~/primehaven/tools/install_ppr_alias.sh` once to add `ppr` to `~/.bashrc`
+**Setup**: Run `~/mandelbrot/tools/install_ppr_alias.sh` once to add `ppr` to `~/.bashrc`
 **Requires**: `gh` CLI for PR creation (available on personal machine)
 **Logs**: Progression history stored in `~/.git_prime_progression/progression.log`
 
 ### Trailing Space Protection
-**Scanner**: `~/primehaven/tools/trailing_space_assassin.sh` - Detect and fix trailing spaces
-**Quick Check**: `~/primehaven/tools/trailing_space_quick_check.sh` - Daily hygiene verification
+**Scanner**: `~/mandelbrot/tools/trailing_space_assassin.sh` - Detect and fix trailing spaces
+**Quick Check**: `~/mandelbrot/tools/trailing_space_quick_check.sh` - Daily hygiene verification
 **Pre-commit Hook**: Auto-installed in `.git/hooks/pre-commit` - Blocks problematic commits
 **Why Critical**: Trailing spaces break cross-platform visibility, corrupt references
 **Status**: Repository clean, protection active
@@ -538,8 +539,8 @@ The project is designed for human-AI collaboration with:
 **Remote**: `gdrive_suxen:` - Configured and tested
 **Key Commands**:
 - `rclone lsd gdrive_suxen:` - List top-level Drive directories
-- `rclone bisync ~/primehaven/journey_of_today gdrive_suxen:journey_of_today/ --resync` - Bidirectional sync
-- `rclone sync ~/primehaven/journey_today/ gdrive_suxen:today/` - One-way upload
+- `rclone bisync ~/mandelbrot/journey_of_today gdrive_suxen:journey_of_today/ --resync` - Bidirectional sync
+- `rclone sync ~/mandelbrot/journey_today/ gdrive_suxen:today/` - One-way upload
 
 **Key Folders in Drive**:
 - `🆕journey©2` - Historical archive (bidirectional sync, renamed from journey_of_today 2026-02-02)
@@ -598,7 +599,7 @@ Until MCP is set up, Eric can copy Google Docs content into local `.txt` files f
 
 ## Build Plan & Environment Setup
 
-**Master Document**: `~/primehaven/ENVIRONMENT_SETUP_AND_BUILD_PLAN.md`
+**Master Document**: `~/mandelbrot/ENVIRONMENT_SETUP_AND_BUILD_PLAN.md`
 
 Comprehensive plan covering:
 - **The Germ**: 11^germ spawn system (three aspects: work=15, play=16, create=17)
@@ -662,7 +663,7 @@ Comprehensive plan covering:
 ### Pending ⚠️
 - **GitHub Labels** - Create manually in GitHub web UI (Settings → Labels): feature, fix, tooling, docs, prime-3 … prime-23
 - **SSH Key** - Personal machine setup for direct GitHub access
-- **ppr activation** - Run `~/primehaven/tools/install_ppr_alias.sh` then `source ~/.bashrc` on personal machine
+- **ppr activation** - Run `~/mandelbrot/tools/install_ppr_alias.sh` then `source ~/.bashrc` on personal machine
 
 ### Storage
 - **/spaces/**: 114GB total (active development workspaces)
